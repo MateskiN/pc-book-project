@@ -1,0 +1,23 @@
+server:
+  port: 8095
+logging:
+  file:
+    name: log/log.log
+  level:
+    root: INFO
+    com.nikolamateski.hotelreservationsystemjpa: INFO
+    org:
+      hibernate:
+        # Set Statistics level
+        stat: INFO
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql: TRACE
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pc-book-library
+    username: library
+    password: library
+  jpa:
+    open-in-view: false
