@@ -1,4 +1,4 @@
-package com.nikolamateski.pcbooklibrary.author;
+package com.nikolamateski.pcbooklibrary.domain.author;
 
 import com.nikolamateski.pcbooklibrary.util.VoidDTO;
 import lombok.RequiredArgsConstructor;

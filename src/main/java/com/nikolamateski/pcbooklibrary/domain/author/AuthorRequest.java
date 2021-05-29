@@ -1,4 +1,4 @@
-package com.nikolamateski.pcbooklibrary.author;
+package com.nikolamateski.pcbooklibrary.domain.author;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.nikolamateski.pcbooklibrary.author;
+package com.nikolamateski.pcbooklibrary.domain.author;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
