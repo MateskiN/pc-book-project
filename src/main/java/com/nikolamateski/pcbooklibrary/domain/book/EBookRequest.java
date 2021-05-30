@@ -13,32 +13,32 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class EBookRequest {
 
-    @NotNull
+    @NotNull(message = "Please enter title for book!")
     @NotBlank
     @Size(max = 250)
     @Column(name = "title", length = 250)
     public String title;
 
-    @NotNull
+    @NotNull(message = "Please enter ISBN for book!")
     @NotBlank
     @Size(max = 100)
     @Column(name = "isbn", length = 100)
     public String isbn;
 
-    @NotNull
+    @NotNull(message = "Please enter year of publish for book!")
     @Column(name = "isbn")
     public Integer yearOfPublish;
 
-    @NotNull
+    @NotNull(message = "Please enter type(EBOOK or PRINT_COPY) for book!")
     @Column(name = "type")
     public BookType type;
 
-    @NotNull(message = "Enter format!")
+    @NotNull(message = "Please enter format for book!")
     @NotBlank
     @Column(name = "format")
     public String format;
 
-    @NotNull
+    @NotNull(message = "Please enter size for book!")
     @Column(name = "size")
     public Integer size;
 

@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
         var message = fieldErrors.stream()
                 .map(item -> item.getDefaultMessage())
                 .reduce((current, next) ->
-                        current + "\n" + next
+                        current + ". " + next
                 )
                 .orElse("Invalid request");
         return new ErrorDTO(message);

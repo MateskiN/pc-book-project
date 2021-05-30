@@ -13,31 +13,31 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class PrintCopyBookRequest {
 
-    @NotNull
+    @NotNull(message = "Please enter title for book!")
     @NotBlank
     @Size(max = 250)
     @Column(name = "title", length = 250, nullable = false)
     public String title;
 
-    @NotNull
+    @NotNull(message = "Please enter ISBN for book!")
     @NotBlank
     @Size(max = 100)
     @Column(name = "isbn", length = 100, nullable = false)
     public String isbn;
 
-    @NotNull
+    @NotNull(message = "Please enter year of publish for book!")
     @Column(name = "isbn", nullable = false)
     public Integer yearOfPublish;
 
-    @NotNull
+    @NotNull(message = "Please enter type(EBOOK or PRINT_COPY) for book!")
     @Column(name = "type", length = 50, nullable = false)
     public BookType type;
 
-    @NotNull
+    @NotNull(message = "Please enter number of pages for book!")
     @Column(name = "number_of_pages")
     public Integer numberOfPages;
 
-    @NotNull
+    @NotNull(message = "Please enter weight for book!")
     @Column(name = "weight")
     public BigDecimal weight;
 
