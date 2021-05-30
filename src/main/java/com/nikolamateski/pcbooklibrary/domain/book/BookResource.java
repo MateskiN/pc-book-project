@@ -10,6 +10,7 @@ import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
@@ -27,7 +28,7 @@ public class BookResource {
 
     @PostMapping(path = "/print-copy",consumes = MimeTypeUtils.APPLICATION_JSON_VALUE,
             produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public PrintCopyBookDTO createPrintCopy(@RequestBody final PrintCopyBookRequest printCopyBookRequest,
+    public PrintCopyBookDTO createPrintCopy(@RequestBody @Valid PrintCopyBookRequest printCopyBookRequest,
                                    @RequestParam("authorId") final Integer authorId) {
         return bookService.createPrintCopy(printCopyBookRequest, authorId);
     }
@@ -55,16 +56,27 @@ public class BookResource {
         return bookService.findById(bookId);
     }
 
-//    @GetMapping(produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-//    public List<BookDTO> findAll() {
-//        return bookService.findAll();
-//    }
-
     @GetMapping(produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     public Page<BookDTO> findPage(
             @RequestParam(value = "title", required = false) final String title,
             @RequestParam(value = "isbn", required = false) final Integer isbn,
             @RequestParam(value = "yearOfPublish", required = false) final Integer yearOfPublish, Pageable pageable) {
         return bookService.findPage(new BookSearchRequest(title, isbn, yearOfPublish, pageable));
+    }
+
+    @GetMapping(path = "/firstLetterOfLastName", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public List<BookDTO> findBookByAuthorsFirstLetterOfLastName(
+            @RequestParam(value = "firstLetterOfLastName") final Character firstLetterOfLastName) {
+        return bookService.findBookByAuthorsFirstLetterOfLastName(firstLetterOfLastName);
+    }
+
+    @GetMapping(path = "/oldest", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public BookDTO findOldestBook() {
+        return bookService.findOldestBook();
+    }
+
+    @GetMapping(path = "/newest", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public BookDTO findNewestBook() {
+        return bookService.findNewestBook();
     }
 }

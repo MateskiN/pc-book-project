@@ -26,13 +26,10 @@ public class BookRequest {
     public String isbn;
 
     @NotNull
-    @NotBlank
     @Column(name = "isbn", nullable = false)
     public Integer yearOfPublish;
 
     @NotNull
-    @NotBlank
-    @Size(max = 50)
     @Column(name = "type", length = 50, nullable = false)
     public BookType type;
 
@@ -51,5 +48,4 @@ public class BookRequest {
     public Book toEntity() {
         return new Book(title, isbn, yearOfPublish, type);
     }
-
 }

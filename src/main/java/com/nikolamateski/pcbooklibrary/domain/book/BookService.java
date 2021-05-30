@@ -40,6 +40,11 @@ public class BookService {
         var printCopyBook = bookRepository.findById(bookId)
                 .orElseThrow(() -> new ResourceNotFoundException("Book with " + bookId + " not found!"));
 
+        if (printCopyBook.type.toString().equals(BookType.EBOOK.toString())) {
+            throw new ResourceNotFoundException("This book is not a " + printCopyBookRequest.type +
+                    ". Please enter id of a Print Copy Book!");
+        }
+
         printCopyBook.title = printCopyBookRequest.title;
         printCopyBook.isbn = printCopyBookRequest.isbn;
         printCopyBook.yearOfPublish = printCopyBookRequest.yearOfPublish;
@@ -52,6 +57,11 @@ public class BookService {
     public EBookDTO updateEBook(final Integer bookId, final EBookRequest eBookRequest) {
         var eBook = bookRepository.findById(bookId)
                 .orElseThrow(() -> new ResourceNotFoundException("Book with " + bookId + " not found!"));
+
+        if (eBook.type.toString().equals(BookType.PRINT_COPY.toString())) {
+            throw new ResourceNotFoundException("This book is not a " + eBookRequest.type +
+                    ". Please enter id of a EBook!");
+        }
 
         eBook.title = eBookRequest.title;
         eBook.isbn = eBookRequest.isbn;
@@ -75,14 +85,23 @@ public class BookService {
         return book.toDTO();
     }
 
-    public List<BookDTO> findAll() {
-        return bookRepository.findAll().stream()
+    public Page<BookDTO> findPage(final BookSearchRequest request) {
+        return bookRepository.findAll(request.generateSpecification(), request.pageable)
+                .map(Book::toDTO);
+    }
+
+    public List<BookDTO> findBookByAuthorsFirstLetterOfLastName(final Character firstLetterOfLastName) {
+        return bookRepository.findBookByAuthorsFirstLetterOfLastName(firstLetterOfLastName)
+                .stream()
                 .map(Book::toDTO)
                 .collect(Collectors.toList());
     }
 
-    public Page<BookDTO> findPage(final BookSearchRequest request) {
-        return bookRepository.findAll(request.generateSpecification(), request.pageable)
-                .map(Book::toDTO);
+    public BookDTO findOldestBook() {
+        return bookRepository.findOldestBook().toDTO();
+    }
+
+    public BookDTO findNewestBook() {
+        return bookRepository.findNewestBook().toDTO();
     }
 }

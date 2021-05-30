@@ -26,19 +26,18 @@ public class PrintCopyBookRequest {
     public String isbn;
 
     @NotNull
-    @NotBlank
     @Column(name = "isbn", nullable = false)
     public Integer yearOfPublish;
 
     @NotNull
-    @NotBlank
-    @Size(max = 50)
     @Column(name = "type", length = 50, nullable = false)
     public BookType type;
 
+    @NotNull
     @Column(name = "number_of_pages")
     public Integer numberOfPages;
 
+    @NotNull
     @Column(name = "weight")
     public BigDecimal weight;
 

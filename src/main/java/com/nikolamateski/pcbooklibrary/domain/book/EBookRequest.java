@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class EBookRequest {
@@ -15,34 +16,32 @@ public class EBookRequest {
     @NotNull
     @NotBlank
     @Size(max = 250)
-    @Column(name = "title", length = 250, nullable = false)
+    @Column(name = "title", length = 250)
     public String title;
 
     @NotNull
     @NotBlank
     @Size(max = 100)
-    @Column(name = "isbn", length = 100, nullable = false)
+    @Column(name = "isbn", length = 100)
     public String isbn;
 
     @NotNull
-    @NotBlank
-    @Column(name = "isbn", nullable = false)
+//    @NotBlank
+    @Column(name = "isbn")
     public Integer yearOfPublish;
 
     @NotNull
-    @NotBlank
-    @Size(max = 50)
-    @Column(name = "type", length = 50, nullable = false)
+//    @NotBlank
+    @Column(name = "type")
     public BookType type;
 
-    @NotNull
+    @NotNull(message = "Enter format!")
     @NotBlank
-    @Column(name = "format", nullable = false)
+    @Column(name = "format")
     public String format;
 
     @NotNull
-    @NotBlank
-    @Column(name = "size", nullable = false)
+    @Column(name = "size")
     public Integer size;
 
     public Book toEntity() {

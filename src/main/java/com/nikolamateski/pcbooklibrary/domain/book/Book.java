@@ -33,7 +33,6 @@ public class Book {
     @ToString.Exclude
     public Author author;
 
-
     public Book() {
     }
 
