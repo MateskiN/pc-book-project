@@ -40,6 +40,11 @@ public class BookService {
         var printCopyBook = bookRepository.findById(bookId)
                 .orElseThrow(() -> new ResourceNotFoundException("Book with " + bookId + " not found!"));
 
+        if (printCopyBook.type != null && printCopyBook.type.toString().equals(BookType.EBOOK.toString())) {
+            throw new ResourceNotFoundException("This book is not a " + printCopyBookRequest.type +
+                    ". Please enter id of a Print Copy Book!");
+        }
+
         printCopyBook.type = printCopyBookRequest.type;
         printCopyBook.title = printCopyBookRequest.title;
         printCopyBook.isbn = printCopyBookRequest.isbn;
@@ -53,6 +58,11 @@ public class BookService {
     public EBookDTO updateEBook(final Integer bookId, final EBookRequest eBookRequest) {
         var eBook = bookRepository.findById(bookId)
                 .orElseThrow(() -> new ResourceNotFoundException("Book with " + bookId + " not found!"));
+
+        if (eBook.type != null && eBook.type.toString().equals(BookType.PRINT_COPY.toString())) {
+            throw new ResourceNotFoundException("This book is not a " + eBookRequest.type +
+                    ". Please enter id of a EBook!");
+        }
 
         eBook.type = eBookRequest.type;
         eBook.title = eBookRequest.title;
