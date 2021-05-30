@@ -20,7 +20,7 @@ public class AuthorResource {
     private final AuthorService authorService;
 
     @PostMapping(consumes = MimeTypeUtils.APPLICATION_JSON_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public AuthorDTO create(@RequestBody @Valid AuthorRequest request) {
+    public AuthorDTO create(@RequestBody @Valid final AuthorRequest request) {
         return authorService.create(request);
     }
 
