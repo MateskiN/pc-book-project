@@ -20,8 +20,4 @@ public interface AuthorRepository extends JpaRepository<Author, Integer>, JpaSpe
             " WHERE author.yearOfBirth " +
             " BETWEEN (book.yearOfPublish / 10) * 10 AND ((book.yearOfPublish / 10) * 10) + 10")
     List<Author> findAuthorsBornInTheSameDecadeAsPublishedBooks();
-
-//    SELECT a.*
-//    FROM author a, book b
-//    WHERE a.year_of_birth BETWEEN (b.year_of_publish/10) * 10 AND ((b.year_of_publish/10) * 10) + 10;
 }
