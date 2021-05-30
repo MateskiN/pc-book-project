@@ -2,6 +2,7 @@ package com.nikolamateski.pcbooklibrary.domain.author;
 
 import com.nikolamateski.pcbooklibrary.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,8 +43,21 @@ public class AuthorService {
         return author.toDTO();
     }
 
-    public List<AuthorDTO> findAll() {
-        return authorRepository.findAll().stream()
+    public Page<AuthorDTO> findPage(final AuthorSearchRequest request) {
+        return authorRepository.findAll(request.generateSpecification(), request.pageable)
+                .map(Author::toDTO);
+    }
+
+    public List<AuthorDTO> findAuthorWithMoreThanThreeBooks() {
+        return authorRepository.findAuthorWithMoreThanThreeBooks()
+                .stream()
+                .map(Author::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<AuthorDTO> findAuthorsBornInTheSameDecadeAsPublishedBooks() {
+        return authorRepository.findAuthorsBornInTheSameDecadeAsPublishedBooks()
+                .stream()
                 .map(Author::toDTO)
                 .collect(Collectors.toList());
     }

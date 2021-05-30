@@ -2,10 +2,7 @@ package com.nikolamateski.pcbooklibrary.domain.author;
 
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -17,8 +14,13 @@ public class Author {
     @GeneratedValue
     public Integer id;
 
+    @Column(name = "first_name", length = 150, nullable = false)
     public String firstName;
+
+    @Column(name = "last_name", length = 150, nullable = false)
     public String lastName;
+
+    @Column(name = "year_of_birth")
     public Integer yearOfBirth;
 
     public Author() {

@@ -26,12 +26,10 @@ public class EBookRequest {
     public String isbn;
 
     @NotNull
-//    @NotBlank
     @Column(name = "isbn")
     public Integer yearOfPublish;
 
     @NotNull
-//    @NotBlank
     @Column(name = "type")
     public BookType type;
 
