@@ -2,6 +2,22 @@ package com.nikolamateski.pcbooklibrary.domain.author;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface AuthorRepository extends JpaRepository<Author, Integer>, JpaSpecificationExecutor<Author> {
+
+    @Query("SELECT author" +
+            " FROM Author author, Book book " +
+            " WHERE author = book.author " +
+            " GROUP BY author " +
+            " HAVING COUNT(book) > 3")
+    List<Author> findAuthorWithMoreThanThreeBooks();
+
+    @Query("SELECT author " +
+            " FROM Author author, Book book " +
+            " WHERE author.yearOfBirth " +
+            " BETWEEN (book.yearOfPublish / 10) * 10 AND ((book.yearOfPublish / 10) * 10) + 10")
+    List<Author> findAuthorsBornInTheSameDecadeAsPublishedBooks();
 }

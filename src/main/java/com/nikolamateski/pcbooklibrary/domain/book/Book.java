@@ -43,6 +43,7 @@ public class Book {
         this.type = type;
     }
 
+    // Constructor for EBook
     public Book(String title, String isbn, Integer yearOfPublish, BookType type, Integer numberOfPages, BigDecimal weight) {
         this.title = title;
         this.isbn = isbn;
@@ -52,6 +53,7 @@ public class Book {
         this.weight = weight;
     }
 
+    // Constructor for Print Copy Book
     public Book(String title, String isbn, Integer yearOfPublish, BookType type, String format, Integer size) {
         this.title = title;
         this.isbn = isbn;
