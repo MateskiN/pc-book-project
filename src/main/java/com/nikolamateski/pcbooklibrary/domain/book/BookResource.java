@@ -64,9 +64,14 @@ public class BookResource {
         return bookService.findPage(new BookSearchRequest(title, isbn, yearOfPublish, pageable));
     }
 
-    @GetMapping(path = "/firstLetterOfLastName", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/orderByOldestToNewest", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public List<BookDTO> orderBooksFromOldestToNewest() {
+        return bookService.orderAllBooksFromOldestToNewest();
+    }
+
+    @GetMapping(path = "/byFirstLetterOfAuthorsLastName", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     public List<BookDTO> findBookByAuthorsFirstLetterOfLastName(
-            @RequestParam(value = "firstLetterOfLastName") final Character firstLetterOfLastName) {
+            @RequestParam(value = "byFirstLetterOfAuthorsLastName") final Character firstLetterOfLastName) {
         return bookService.findBookByAuthorsFirstLetterOfLastName(firstLetterOfLastName);
     }
 
