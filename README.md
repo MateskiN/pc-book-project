@@ -56,4 +56,5 @@ Also change you server port if you are using the current one which is 8095.
 Right now the spring datasource url is "jdbc:postgresql://localhost:5432/pc-book-library" which is likely to be same in your case too.
 If noy please put on your datasource url. Also please put in your username and password that you've set.
 * Now you can run your application. The tables "author" and "book" will be automatically migrated in "pc-book-library" becayse if Flyway.
-* Once you have set up your databse, you can also run the unit tests.
+* Once you have set up your databse, you can also run the unit tests. For that you can go to the project root folder and run the following command:
+  * mvn clean test
