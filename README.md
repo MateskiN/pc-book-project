@@ -34,6 +34,7 @@ It returns a ResponseEntity status, success: true.
 * Get book by id: It gets all the details of a book for that id. The end point for this function is: "/api/books/{bookId}". Here bookId is the path variable.
 * Get page of books: It returns a specification for all the books that are registered, as a page. The url for this function is: "/api/books".
 It recieves three request param for title, isbn and year of publish, which are not required and can be used for filtering.
+* Get All Books Ordered By Oldest To Newest: This will return a list of all the books starting from oldest to newest. The url for this function is: "/api/books/orderByOldestToNewest".
 * Get Books By First Letter Of Authors Last Name: The end point for this function is: "/api/books/byFirstLetterOfAuthorsLastName".
 * Get Oldest Book: The end point is: "/api/books/oldest".
 * Get Newest Book: The end point is: "/api/books/newest".
