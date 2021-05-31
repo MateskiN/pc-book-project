@@ -90,6 +90,13 @@ public class BookService {
                 .map(Book::toDTO);
     }
 
+    public List<BookDTO> orderAllBooksFromOldestToNewest() {
+        return bookRepository.orderAllBooksFromOldestToNewest()
+                .stream()
+                .map(Book::toDTO)
+                .collect(Collectors.toList());
+    }
+
     public List<BookDTO> findBookByAuthorsFirstLetterOfLastName(final Character firstLetterOfLastName) {
         return bookRepository.findBookByAuthorsFirstLetterOfLastName(firstLetterOfLastName)
                 .stream()

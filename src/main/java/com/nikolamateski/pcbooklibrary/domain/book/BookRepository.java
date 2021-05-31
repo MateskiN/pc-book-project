@@ -9,6 +9,9 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Integer>, JpaSpecificationExecutor<Book> {
 
+    @Query("SELECT book FROM Book book ORDER BY book.yearOfPublish")
+    List<Book> orderAllBooksFromOldestToNewest();
+
     @Query("SELECT book FROM Book book " +
             " INNER JOIN book.author author " +
             " WHERE author.lastName LIKE :firstLetterOfLastName%")
